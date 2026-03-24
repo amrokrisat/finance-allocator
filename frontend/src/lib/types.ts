@@ -59,6 +59,30 @@ export type PlannerResponse = {
   objective: string;
   stages?: Array<{ stage: string; status: string; details: string }>;
   iterations?: Array<Record<string, unknown>>;
+  financial_profile_summary?: Record<string, unknown>;
+  cash_flow_summary?: Record<string, unknown>;
+  goals_summary?: Record<string, unknown>;
+  assumptions?: string[];
+  constraints?: string[];
+  plan_overview?: {
+    monthly_income: number;
+    essential_expenses: number;
+    total_expenses: number;
+    minimum_debt_payments: number;
+    monthly_allocated: number;
+    cash_buffer: number;
+    plan_quality_score: number;
+    maintainability_score: number;
+    stability_score: number;
+    resilience_summary: string;
+  };
+  why_this_plan?: string[];
+  first_30_days?: string[];
+  scenario_levers?: Array<{
+    title: string;
+    impact: number;
+    description: string;
+  }>;
   final_monthly_plan: PlannerLineItem[];
   per_paycheck_plan: Array<{
     paycheck_index: number;
@@ -91,6 +115,8 @@ export type PlannerResponse = {
     validation_warnings: string[];
     fragility_risks: string[];
     behavioral_risks: string[];
+    behavior_guardrails?: string[];
+    opportunity_areas?: string[];
   };
   financial_stability_report: {
     liquidity_months: number;

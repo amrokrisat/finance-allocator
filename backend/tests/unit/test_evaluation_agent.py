@@ -68,5 +68,8 @@ class EvaluationAgentTests(unittest.TestCase):
 
         self.assertTrue(evaluation.fragility_risks)
         self.assertTrue(evaluation.behavioral_risks)
+        self.assertTrue(evaluation.behavior_guardrails)
+        self.assertTrue(evaluation.opportunity_areas)
+        self.assertIsInstance(evaluation.resilience_summary, str)
+        self.assertGreaterEqual(evaluation.stability_score, 0)
         self.assertLess(evaluation.plan_quality_score, 82)
-

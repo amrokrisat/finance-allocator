@@ -42,6 +42,12 @@ class OrchestratorFlowTests(unittest.TestCase):
         self.assertIn("risk_assessment", result)
         self.assertIn("financial_stability_report", result)
         self.assertIn("suggested_next_iteration_roadmap", result)
+        self.assertIn("plan_overview", result)
+        self.assertIn("why_this_plan", result)
+        self.assertIn("first_30_days", result)
+        self.assertIn("scenario_levers", result)
+        self.assertTrue(result["why_this_plan"])
+        self.assertTrue(result["first_30_days"])
 
 
 if __name__ == "__main__":

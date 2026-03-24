@@ -13,6 +13,7 @@ type PlannerFormProps = {
 export function PlannerForm({ onPlanReady }: PlannerFormProps) {
   const [form, setForm] = useState<IntakeFormState>(createDemoFormState());
   const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const updateField = <K extends keyof IntakeFormState>(key: K, value: IntakeFormState[K]) => {
@@ -23,6 +24,7 @@ export function PlannerForm({ onPlanReady }: PlannerFormProps) {
     startTransition(async () => {
       try {
         setError(null);
+        setSubmitted(true);
         const plan = await buildPlan(formStateToPayload(form));
         onPlanReady(plan);
       } catch (submitError) {
@@ -49,6 +51,9 @@ export function PlannerForm({ onPlanReady }: PlannerFormProps) {
       <p className="panel-copy">
         MVP tradeoff: this form captures one primary household scenario with a few common inputs so we can validate the backend planning engine without building a large onboarding flow yet.
       </p>
+      <div className="inlineNotice">
+        <strong>How to use this:</strong> keep the inputs approximate but realistic. The strongest demo is changing one or two fields and showing how the plan adapts.
+      </div>
       <div className="formGrid">
         <label className="field">
           <span>Name</span>
@@ -142,6 +147,9 @@ export function PlannerForm({ onPlanReady }: PlannerFormProps) {
           {isPending ? "Building plan..." : "Build monthly plan"}
         </button>
       </div>
+      {submitted && !error ? (
+        <p className="successText">Plan generated. Review the explanation, first-30-days actions, and scenario levers on the right.</p>
+      ) : null}
       {error ? <p className="errorText">{error}</p> : null}
     </section>
   );

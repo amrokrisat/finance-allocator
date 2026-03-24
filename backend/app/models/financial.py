@@ -195,9 +195,13 @@ class ValidationResult:
 class EvaluationReport:
     plan_quality_score: int
     maintainability_score: int
+    stability_score: int
     fragility_risks: List[str]
     behavioral_risks: List[str]
+    behavior_guardrails: List[str]
     refinement_opportunities: List[str]
+    opportunity_areas: List[str]
+    resilience_summary: str
     financial_stability_report: Dict[str, object]
 
 
@@ -210,8 +214,16 @@ class PlanningSummary:
     per_paycheck_plan: List[Dict[str, object]]
     debt_payoff_summary: Dict[str, object]
     savings_investing_summary: Dict[str, object]
+    financial_profile_summary: Dict[str, object]
+    cash_flow_summary: Dict[str, object]
+    goals_summary: Dict[str, object]
+    assumptions: List[str]
+    constraints: List[str]
+    plan_overview: Dict[str, object]
+    why_this_plan: List[str]
+    first_30_days: List[str]
+    scenario_levers: List[Dict[str, object]]
     risk_assessment: Dict[str, object]
     financial_stability_report: Dict[str, object]
     suggested_next_iteration_roadmap: List[str]
     logs: List[Dict[str, object]]
-

@@ -61,6 +61,52 @@ select {
   color: var(--muted);
 }
 
+.heroPoints,
+.trustStrip {
+  display: grid;
+  gap: 12px;
+}
+
+.heroPoints {
+  margin-top: 22px;
+  max-width: 920px;
+}
+
+.heroPoints p,
+.trustCard p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.trustStrip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.trustCard {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(255, 252, 246, 0.64);
+  box-shadow: var(--shadow);
+}
+
+.trustCard span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.trustCard strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
 .workspace,
 .resultsGrid {
   display: grid;
@@ -180,6 +226,14 @@ select {
   resize: vertical;
 }
 
+.inlineNotice {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(162, 74, 43, 0.08);
+  color: var(--text);
+}
+
 .toggleField {
   grid-template-columns: auto 1fr;
   align-items: center;
@@ -259,6 +313,12 @@ select {
   background: rgba(79, 60, 43, 0.07);
 }
 
+.highlightCopy {
+  margin-top: 16px;
+  color: var(--text);
+  font-weight: 600;
+}
+
 .warningChip {
   margin: 0;
   padding: 10px 12px;
@@ -278,6 +338,10 @@ select {
   color: #9c2f1e;
 }
 
+.successText {
+  color: #2f6b3d;
+}
+
 @media (max-width: 960px) {
   .workspace,
   .resultsGrid {
@@ -285,7 +349,8 @@ select {
   }
 
   .formGrid,
-  .metricGrid {
+  .metricGrid,
+  .trustStrip {
     grid-template-columns: 1fr;
   }
 

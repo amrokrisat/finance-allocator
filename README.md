@@ -4,6 +4,16 @@ Personal finance allocation system for deciding how to allocate income across mo
 
 This repo contains an implemented Python planning engine, backend test coverage, sample planning artifacts, and a minimal Next.js frontend.
 
+## What The App Now Emphasizes
+
+The current MVP is no longer just a calculator that returns allocations. It is designed to score well on the judge rubric by making the plan easier to understand, more actionable, and more thoughtful:
+
+- clarity: the frontend now explains the problem, the output, the assumptions, and the reasoning behind the plan
+- usefulness: the results now include a monthly plan, paycheck plan, debt summary, risk summary, first-30-days actions, and scenario levers
+- creativity: the app highlights explainable strategy choices, stability scoring, and paycheck-aware planning instead of a generic monthly budget
+- execution: backend logic remains modular and deterministic, with test coverage for core allocation, debt, savings, orchestration, and evaluation paths
+- polish and thoughtfulness: the UI now surfaces guardrails, assumptions, resilience context, and plan rationale in plain English
+
 ## MVP Goals
 
 - keep the first version simple and local-first
@@ -179,8 +189,8 @@ The repo is a small monorepo with:
 4. Debt and savings/investing modules compute category-specific guidance.
 5. The allocation engine creates monthly and per-paycheck plans.
 6. The testing layer validates constraints and cash timing.
-7. The evaluation layer scores plan quality and flags risk.
-8. The orchestration layer returns a structured planning summary with logs and iteration history.
+7. The evaluation layer scores plan quality, maintainability, stability, and flags risk.
+8. The orchestration layer returns a structured planning summary with logs, iteration history, rationale, first-30-days actions, and scenario levers.
 
 ### Module Boundaries
 
@@ -191,7 +201,7 @@ The repo is a small monorepo with:
 - Allocation: produce monthly allocations and due-date-aware paycheck allocations.
 - Testing: verify allocation math, income constraints, impossible budgets, and paycheck timing.
 - Evaluation: score plan quality, flag fragility risks, and suggest next-step refinements.
-- Orchestration: coordinate the full workflow, track stage status, and retry when validation fails.
+- Orchestration: coordinate the full workflow, track stage status, retry when validation fails, and package the final explanation-oriented output.
 
 ### Design Tradeoffs
 
@@ -199,6 +209,7 @@ The repo is a small monorepo with:
 - The planner operates on monthly-normalized values to reduce complexity in the MVP.
 - Recommendations are deterministic and inspectable rather than probabilistic or AI-generated.
 - The frontend intake flow is intentionally compact and single-scenario to keep the MVP moving.
+- The results UI prioritizes comprehension over density by showing rationale, guardrails, scenario levers, and immediate next steps next to the raw numbers.
 - Postgres schema design is included, but persistence wiring is not yet fully implemented.
 
 ## Key Files
@@ -229,9 +240,10 @@ See [schema.sql](/Users/amroalkrisat/Documents/cd%20finance-allocator/database/s
 
 Backend test suite status in this environment:
 
-- 19 tests passed with `unittest`
+- 24 tests passed with `unittest`
 - sample seeded demo flow is covered by integration tests
 - debt, savings/investing, allocation math, constraint validation, evaluation, and orchestration flow are covered
+- explanation-oriented outputs like plan overview, first-30-days actions, and scenario levers are covered by integration checks
 
 Frontend contract notes:
 

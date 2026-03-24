@@ -114,11 +114,37 @@ class OrchestratorAgent:
         stages.append(self._stage("evaluation", "completed", "Generated quality and stability assessment."))
         logs.append(self._log("evaluation", "completed", final_evaluation.refinement_opportunities))
 
+        why_this_plan = self._why_this_plan(strategy.strategic_notes, final_debt_plan.notes, final_savings_plan.notes)
+        first_30_days = self._first_30_days(final_plan)
+        scenario_levers = self._scenario_levers(snapshot, final_plan, final_savings_plan)
+        plan_overview = {
+            "monthly_income": snapshot.monthly_income_total,
+            "essential_expenses": snapshot.monthly_essential_expense_total,
+            "total_expenses": snapshot.monthly_expense_total,
+            "minimum_debt_payments": snapshot.monthly_minimum_debt_total,
+            "monthly_allocated": final_plan.monthly_allocated_total,
+            "cash_buffer": next(
+                (item["amount"] for item in [
+                    {
+                        "bucket": line.bucket,
+                        "amount": line.amount,
+                    } for line in final_plan.monthly_allocations
+                ] if item["bucket"] == "buffer"),
+                Decimal("0.00"),
+            ),
+            "plan_quality_score": final_evaluation.plan_quality_score,
+            "maintainability_score": final_evaluation.maintainability_score,
+            "stability_score": final_evaluation.stability_score,
+            "resilience_summary": final_evaluation.resilience_summary,
+        }
+
         risk_assessment = {
             "validation_failures": [asdict(item) for item in final_validation.failures],
             "validation_warnings": final_validation.warnings,
             "fragility_risks": final_evaluation.fragility_risks,
             "behavioral_risks": final_evaluation.behavioral_risks,
+            "behavior_guardrails": final_evaluation.behavior_guardrails,
+            "opportunity_areas": final_evaluation.opportunity_areas,
         }
 
         return PlanningSummary(
@@ -181,6 +207,19 @@ class OrchestratorAgent:
                 "short_term_goals": final_savings_plan.short_term_goal_recommendations,
                 "notes": final_savings_plan.notes,
             },
+            financial_profile_summary=snapshot.financial_profile,
+            cash_flow_summary={
+                **snapshot.cash_flow_summary,
+                "monthly_allocated_total": final_plan.monthly_allocated_total,
+                "monthly_buffer_total": plan_overview["cash_buffer"],
+            },
+            goals_summary=snapshot.goals_summary,
+            assumptions=snapshot.assumptions,
+            constraints=snapshot.constraints,
+            plan_overview=plan_overview,
+            why_this_plan=why_this_plan,
+            first_30_days=first_30_days,
+            scenario_levers=scenario_levers,
             risk_assessment=risk_assessment,
             financial_stability_report=final_evaluation.financial_stability_report,
             suggested_next_iteration_roadmap=final_evaluation.refinement_opportunities,
@@ -202,3 +241,60 @@ class OrchestratorAgent:
 
     def _stage(self, stage: str, status: str, details: str) -> StageStatus:
         return StageStatus(stage=stage, status=status, details=details)
+
+    def _why_this_plan(
+        self,
+        strategy_notes: List[str],
+        debt_notes: List[str],
+        savings_notes: List[str],
+    ) -> List[str]:
+        merged = strategy_notes[:2] + debt_notes[:1] + savings_notes[:1]
+        return merged[:4]
+
+    def _first_30_days(self, plan: AllocationPlan) -> List[str]:
+        actions: List[str] = []
+        for item in plan.monthly_allocations:
+            if item.bucket in {"mandatory_expense", "debt_minimum", "debt_extra", "emergency_fund"}:
+                actions.append(f"{item.name}: set aside {item.amount} this month.")
+            if len(actions) == 5:
+                break
+        return actions
+
+    def _scenario_levers(
+        self,
+        snapshot: object,
+        plan: AllocationPlan,
+        savings_plan: object,
+    ) -> List[Dict[str, object]]:
+        levers: List[Dict[str, object]] = []
+        flexible_expenses = [
+            line for line in plan.monthly_allocations if line.bucket == "flexible_expense"
+        ]
+        if flexible_expenses:
+            biggest = max(flexible_expenses, key=lambda item: item.amount)
+            levers.append(
+                {
+                    "title": "Trim flexible spending",
+                    "impact": biggest.amount,
+                    "description": f"Reducing {biggest.name} would immediately free up cash for debt or savings.",
+                }
+            )
+        brokerage = next((line for line in plan.monthly_allocations if line.bucket == "brokerage"), None)
+        if brokerage:
+            levers.append(
+                {
+                    "title": "Pause brokerage temporarily",
+                    "impact": brokerage.amount,
+                    "description": "Temporarily redirecting taxable investing could increase short-term stability.",
+                }
+            )
+        debt_extra = next((line for line in plan.monthly_allocations if line.bucket == "debt_extra"), None)
+        if debt_extra:
+            levers.append(
+                {
+                    "title": "Accelerate debt payoff",
+                    "impact": debt_extra.amount,
+                    "description": "If extra income appears, adding it to the top debt would shorten the payoff timeline.",
+                }
+            )
+        return levers[:3]
