@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: finance-allocator-api
+    runtime: python
+    rootDir: backend
+    buildCommand: python -m compileall app
+    startCommand: PYTHONPATH=. python app/server.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11

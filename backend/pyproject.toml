@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finance-allocator-backend"
+version = "0.1.0"
+description = "MVP backend for a personal finance allocation planner"
+requires-python = ">=3.9"
+

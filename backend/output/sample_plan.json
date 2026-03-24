@@ -1,0 +1,392 @@
+{
+  "objective": "Create a realistic monthly action plan that improves liquidity, pays down debt, and funds near-term goals.",
+  "stages": [
+    {
+      "stage": "intake",
+      "status": "completed",
+      "details": "Normalized profile and identified constraints."
+    },
+    {
+      "stage": "strategy",
+      "status": "completed",
+      "details": "Selected avalanche strategy."
+    },
+    {
+      "stage": "testing",
+      "status": "completed",
+      "details": "Validation passed on iteration 1."
+    },
+    {
+      "stage": "evaluation",
+      "status": "completed",
+      "details": "Generated quality and stability assessment."
+    }
+  ],
+  "iterations": [
+    {
+      "iteration": 1,
+      "strategy": [
+        "mandatory_expenses",
+        "minimum_debt",
+        "starter_emergency_fund",
+        "retirement_match",
+        "high_priority_goals",
+        "extra_debt",
+        "high_interest_debt_focus",
+        "full_emergency_fund",
+        "sinking_funds",
+        "retirement_extra",
+        "brokerage"
+      ],
+      "debt_framework": "avalanche",
+      "validation_passed": true,
+      "failures": [],
+      "warnings": []
+    }
+  ],
+  "final_monthly_plan": [
+    {
+      "bucket": "mandatory_expense",
+      "name": "Rent",
+      "amount": 1750.0,
+      "reason": "Mandatory living expense",
+      "due_day": 1
+    },
+    {
+      "bucket": "mandatory_expense",
+      "name": "Utilities",
+      "amount": 240.0,
+      "reason": "Mandatory living expense",
+      "due_day": 12
+    },
+    {
+      "bucket": "mandatory_expense",
+      "name": "Groceries",
+      "amount": 550.0,
+      "reason": "Mandatory living expense",
+      "due_day": 16
+    },
+    {
+      "bucket": "mandatory_expense",
+      "name": "Insurance",
+      "amount": 180.0,
+      "reason": "Mandatory living expense",
+      "due_day": 18
+    },
+    {
+      "bucket": "mandatory_expense",
+      "name": "Phone",
+      "amount": 85.0,
+      "reason": "Mandatory living expense",
+      "due_day": 24
+    },
+    {
+      "bucket": "mandatory_expense",
+      "name": "Transit",
+      "amount": 140.0,
+      "reason": "Mandatory living expense",
+      "due_day": 25
+    },
+    {
+      "bucket": "flexible_expense",
+      "name": "Gym",
+      "amount": 50.0,
+      "reason": "Flexible living expense",
+      "due_day": 26
+    },
+    {
+      "bucket": "debt_minimum",
+      "name": "Credit Card",
+      "amount": 165.0,
+      "reason": "Required debt minimum payment",
+      "due_day": 20
+    },
+    {
+      "bucket": "debt_minimum",
+      "name": "Student Loan",
+      "amount": 120.0,
+      "reason": "Required debt minimum payment",
+      "due_day": 28
+    },
+    {
+      "bucket": "debt_extra",
+      "name": "Credit Card",
+      "amount": 966.0,
+      "reason": "Extra debt payment using avalanche",
+      "due_day": null
+    },
+    {
+      "bucket": "emergency_fund",
+      "name": "Emergency Fund",
+      "amount": 676.2,
+      "reason": "Liquidity reserve contribution",
+      "due_day": null
+    },
+    {
+      "bucket": "retirement",
+      "name": "Retirement",
+      "amount": 598.1,
+      "reason": "Retirement contribution based on strategy and employer match",
+      "due_day": null
+    },
+    {
+      "bucket": "sinking_fund",
+      "name": "Car Maintenance",
+      "amount": 450.8,
+      "reason": "Sinking fund contribution",
+      "due_day": null
+    },
+    {
+      "bucket": "brokerage",
+      "name": "Brokerage",
+      "amount": 112.7,
+      "reason": "Taxable investing after nearer-term obligations",
+      "due_day": null
+    },
+    {
+      "bucket": "buffer",
+      "name": "Cash Buffer",
+      "amount": 416.2,
+      "reason": "Preserved as slack to reduce overdraft risk",
+      "due_day": null
+    }
+  ],
+  "per_paycheck_plan": [
+    {
+      "paycheck_index": 1,
+      "expected_income": 2950.0,
+      "remaining_cash": 15.0,
+      "allocations": [
+        {
+          "bucket": "mandatory_expense",
+          "name": "Rent",
+          "amount": 1750.0,
+          "reason": "Mandatory living expense",
+          "due_day": 1
+        },
+        {
+          "bucket": "mandatory_expense",
+          "name": "Utilities",
+          "amount": 240.0,
+          "reason": "Mandatory living expense",
+          "due_day": 12
+        },
+        {
+          "bucket": "mandatory_expense",
+          "name": "Groceries",
+          "amount": 550.0,
+          "reason": "Mandatory living expense",
+          "due_day": 16
+        },
+        {
+          "bucket": "mandatory_expense",
+          "name": "Insurance",
+          "amount": 180.0,
+          "reason": "Mandatory living expense",
+          "due_day": 18
+        },
+        {
+          "bucket": "debt_minimum",
+          "name": "Credit Card",
+          "amount": 165.0,
+          "reason": "Required debt minimum payment",
+          "due_day": 20
+        },
+        {
+          "bucket": "flexible_expense",
+          "name": "Gym",
+          "amount": 50.0,
+          "reason": "Flexible living expense",
+          "due_day": 26
+        }
+      ]
+    },
+    {
+      "paycheck_index": 2,
+      "expected_income": 2950.0,
+      "remaining_cash": 252.0,
+      "allocations": [
+        {
+          "bucket": "mandatory_expense",
+          "name": "Phone",
+          "amount": 85.0,
+          "reason": "Mandatory living expense",
+          "due_day": 24
+        },
+        {
+          "bucket": "mandatory_expense",
+          "name": "Transit",
+          "amount": 140.0,
+          "reason": "Mandatory living expense",
+          "due_day": 25
+        },
+        {
+          "bucket": "debt_minimum",
+          "name": "Student Loan",
+          "amount": 120.0,
+          "reason": "Required debt minimum payment",
+          "due_day": 28
+        },
+        {
+          "bucket": "debt_extra",
+          "name": "Credit Card",
+          "amount": 966.0,
+          "reason": "Extra debt payment using avalanche",
+          "due_day": null
+        },
+        {
+          "bucket": "emergency_fund",
+          "name": "Emergency Fund",
+          "amount": 676.2,
+          "reason": "Liquidity reserve contribution",
+          "due_day": null
+        },
+        {
+          "bucket": "retirement",
+          "name": "Retirement",
+          "amount": 598.1,
+          "reason": "Retirement contribution based on strategy and employer match",
+          "due_day": null
+        },
+        {
+          "bucket": "brokerage",
+          "name": "Brokerage",
+          "amount": 112.7,
+          "reason": "Taxable investing after nearer-term obligations",
+          "due_day": null
+        }
+      ]
+    },
+    {
+      "paycheck_index": 3,
+      "expected_income": 600.0,
+      "remaining_cash": 149.2,
+      "allocations": [
+        {
+          "bucket": "sinking_fund",
+          "name": "Car Maintenance",
+          "amount": 450.8,
+          "reason": "Sinking fund contribution",
+          "due_day": null
+        }
+      ]
+    }
+  ],
+  "debt_payoff_summary": {
+    "recommended_framework": "avalanche",
+    "payoff_order": [
+      "Credit Card",
+      "Student Loan"
+    ],
+    "estimated_payoff_months": 15,
+    "estimated_interest_cost": 751.59,
+    "interest_saved_vs_alternative": 0.0,
+    "comparison": {
+      "avalanche": {
+        "framework": "avalanche",
+        "estimated_months": 15,
+        "total_interest": 751.59,
+        "payoff_order": [
+          "Credit Card",
+          "Student Loan"
+        ]
+      },
+      "snowball": {
+        "framework": "snowball",
+        "estimated_months": 15,
+        "total_interest": 751.59,
+        "payoff_order": [
+          "Credit Card",
+          "Student Loan"
+        ]
+      }
+    },
+    "unsustainable_debt_load": false,
+    "notes": [
+      "Avalanche is the default because it minimizes interest in most cases."
+    ]
+  },
+  "savings_investing_summary": {
+    "emergency_fund_target": 8835.0,
+    "emergency_fund_gap": 6535.0,
+    "emergency_fund_monthly_recommendation": 676.2,
+    "sinking_funds": [
+      {
+        "name": "Car Maintenance",
+        "goal_type": "sinking_fund",
+        "target_amount": 1200.0,
+        "current_amount": 300.0,
+        "recommended_monthly": 450.8,
+        "gap": 900.0,
+        "priority": 2
+      }
+    ],
+    "retirement_recommendation": 598.1,
+    "brokerage_recommendation": 112.7,
+    "short_term_goals": [
+      {
+        "name": "Travel",
+        "goal_type": "short_term",
+        "target_amount": 1800.0,
+        "current_amount": 250.0,
+        "recommended_monthly": 0.0,
+        "gap": 1550.0,
+        "priority": 3
+      }
+    ],
+    "notes": [
+      "Emergency liquidity is funded before brokerage unless the user has ample cash reserves.",
+      "Brokerage is still modest because the emergency fund is not fully built."
+    ]
+  },
+  "risk_assessment": {
+    "validation_failures": [],
+    "validation_warnings": [],
+    "fragility_risks": [
+      "Liquid reserves cover less than one month of essential expenses."
+    ],
+    "behavioral_risks": [
+      "Brokerage funding may feel premature before full emergency reserves are built."
+    ]
+  },
+  "financial_stability_report": {
+    "liquidity_months": 0.78,
+    "net_worth": -5100.0,
+    "debt_to_income_warning": false,
+    "buffer_present": true
+  },
+  "suggested_next_iteration_roadmap": [
+    "Increase emergency funding priority until at least one month is covered."
+  ],
+  "logs": [
+    {
+      "stage": "intake",
+      "status": "completed",
+      "messages": [
+        "No critical constraints detected."
+      ]
+    },
+    {
+      "stage": "strategy",
+      "status": "completed",
+      "messages": [
+        "Mandatory costs and debt minimums are funded before optional wealth-building buckets.",
+        "High-interest debt is pulled forward in the waterfall because APR exceeds 12%."
+      ]
+    },
+    {
+      "stage": "testing",
+      "status": "completed",
+      "messages": [
+        "Validation executed."
+      ]
+    },
+    {
+      "stage": "evaluation",
+      "status": "completed",
+      "messages": [
+        "Increase emergency funding priority until at least one month is covered."
+      ]
+    }
+  ]
+}
